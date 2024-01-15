@@ -1,0 +1,1 @@
+root://eosuser.cern.ch//eos/user/d/dmaity/LQsToTauTauTTbar/MC_skim/M15/LQsToTauTauTTbar_LQM1500_Skim_NanoAOD.root

@@ -1,0 +1,1 @@
+root://eosuser.cern.ch//eos/cms/store/group/phys_heavyions/knaskar/ana3/Output/cms-hcs-run2/Skim_NanoAOD/background/TTbarPowheg_Hadronic/2018/TTbarPowheg_Hadronic_Skim_NanoAOD_10of68.root
