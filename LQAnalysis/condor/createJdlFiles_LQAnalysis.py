@@ -48,14 +48,15 @@ tunedict = {
     "mtopdown" : "mtopdown_TTbar"
 }
 
-jdlDir = 'Signal'
+jdlDir = 'Sample'
 if not os.path.exists("%s/log"%jdlDir):
     os.makedirs("%s/log"%jdlDir)
 condorLogDir = "log"
 tarFile = "%s/LQAnalysis.tar.gz"%jdlDir
 if os.path.exists(tarFile):
 	os.system("rm %s"%tarFile)
-os.system("tar -zcvf %s ../../LQAnalysis --exclude condor"%tarFile)
+os.system("tar --exclude 'condor' -zcvf %s ../../LQAnalysis" % tarFile)
+#os.system("tar -zcvf %s ../../LQAnalysis --exclude condor"%tarFile)
 os.system("cp run_LQAnalysis.sh %s/"%jdlDir)
 common_command = \
 'Universe   = vanilla\n\
@@ -67,7 +68,7 @@ use_x509userproxy = true\n\
 +BenchmarkJob = True\n\
 #+JobFlavour = "testmatch"\n\
 #+MaxRuntime = 41220\n\
-+MaxRuntime = 900\n\
++MaxRuntime = 7200\n\
 notification = Never\n\
 Output = %s/log_$(cluster)_$(process).stdout\n\
 Error  = %s/log_$(cluster)_$(process).stderr\n\
@@ -124,9 +125,9 @@ for year in [2018]:
             else:
                 fnamestart = sample
 
-            noflines = subprocess.Popen('wc -l ../input/eos/%i/%s_%i.txt | awk \'{print $1}\''%(year,fnamestart,year),shell=True,stdout=subprocess.PIPE).communicate()[0].split('\n')[0]
+            noflines = subprocess.Popen('wc -l ../input/eos/%i/%s_%i.txt | awk \'{print $1}\''%(year,fnamestart,year),shell=True,stdout=subprocess.PIPE).communicate()[0].decode('utf-8').split('\n')[0]
             nJob = int(noflines)
-            print "%s %s %s"%(sample,nJob,syst)
+            print("%s %s %s"%(sample,nJob,syst))
             if nJob==1:
                 run_command =  'Arguments  = %s %s input/eos/%i/%s_%i.txt 0 %s \nQueue 1\n\n' %(year, sample, year, fnamestart, year, syst)
                 #run_command =  'Arguments  = %s %s input/eos/%i/%s_%i.txt 0 %s \nQueue 1\n\n' %(year, sample, year, fnamestart, year, syst)
