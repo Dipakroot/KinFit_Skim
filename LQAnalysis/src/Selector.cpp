@@ -505,7 +505,8 @@ void Selector::filter_jets(EventTree *event, int tauId_1, int tauId_2){
     double jetSF = 1.;
 	
     double resolution = 0.;
-    if (!tree->isData_){
+    
+     if (!tree->isData_){
       jetParam.setJetEta(tree->jetEta_[jetInd]);
       jetParam.setJetPt(tree->jetPt_[jetInd]);
       jetParam.setJetArea(tree->jetArea_[jetInd]);

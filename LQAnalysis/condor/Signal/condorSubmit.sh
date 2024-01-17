@@ -1,0 +1,1 @@
+condor_submit submitJobs_2018.jdl

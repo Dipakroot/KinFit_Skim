@@ -571,7 +571,7 @@ Int_t SkimAna::CreateHistoArrays()
   savedir->cd();
   
   if(fSyst=="base"){
-    fNBSelCols = 6; //Nof cutflow columns
+    fNBSelCols = 7; //Nof cutflow columns
     //fNBSelColHists = 62; //nof histograms
     fNBSelColHists = 14; //nof histograms 
     fNSelColHists = fNBSelCols*fNBSelColHists;
@@ -580,7 +580,7 @@ Int_t SkimAna::CreateHistoArrays()
     fNBSelColProfiles = 1; //nof TProfiles 
     fNSelColProfiles = fNBSelCols*fNBSelColProfiles;
     pControl = new TProfile*[fNSelColProfiles];
-    const char *cfcols[] = {"Event", "Trigger","DiTau" ,"EleMuVeto", "Jet", "bjet"} ;
+    const char *cfcols[] = {"Event","GenMatching","Trigger","DiTau" ,"EleMuVeto", "Jet", "bjet"} ;
     
     fSelColDir = new TDirectory*[fNBSelCols];  
     
@@ -3706,7 +3706,7 @@ Bool_t SkimAna::Process(Long64_t entry)
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if(
-	(!(evtPick->passFilter) or !(selector->isPVGood) or !(evtPick->passTrigger_tau))
+	(!(evtPick->passFilter) or !(selector->isPVGood) or !(evtPick->passPresel_tau) or !(evtPick->passTrigger_tau))
                               ) return true;
      
   if(systType == kBase) FillTriggerControlHists();
@@ -6462,7 +6462,14 @@ bool SkimAna::FillEventControlHists(){
 	TList *list = (TList *)fSelColDir[iscl]->GetList();
 	((TH1D *) list->FindObject("nTau"))->Fill(event->nTau_, combined_tauwt);
 	((TH1D *) list->FindObject("nJet"))->Fill(event->nJet_, combined_tauwt);
-
+	
+	//int iscl = 1;
+	if(evtPick->passPresel_tau){
+	int iscl = 1;
+	TList *list = (TList *)fSelColDir[iscl]->GetList();
+	((TH1D *) list->FindObject("nTau"))->Fill(event->nTau_, combined_tauwt);
+        ((TH1D *) list->FindObject("nJet"))->Fill(event->nJet_, combined_tauwt);
+	}
 /*
  hControl[iscl*fNBSelColHists + hidx++] = new TH1D("pt_tau_1","pt_tau_1",100, 0., 1000.);
     hControl[iscl*fNBSelColHists + hidx++] = new TH1D("eta_tau_1","eta_tau_1", 30, -3., 3.);
@@ -6581,7 +6588,7 @@ bool SkimAna::FillEventControlHists(){
 bool SkimAna::FillTriggerControlHists(){
         double combined_tauwt = _sampleWeight*_prefireWeight*_PUWeight;	
 	//double tau_wt = 1;
-        int iscl = 1;
+        int iscl = 2;
         TList *list = (TList *)fSelColDir[iscl]->GetList();
         ((TH1D *) list->FindObject("nTau"))->Fill(event->nTau_, combined_tauwt);
         ((TH1D *) list->FindObject("nJet"))->Fill(event->nJet_, combined_tauwt);
@@ -6629,7 +6636,7 @@ bool SkimAna::FillTriggerControlHists(){
 bool SkimAna::FillLeptonControlHists(){
         double combined_tauwt = _sampleWeight*_prefireWeight*_PUWeight;	
 	//double tau_wt = 1;
-        int iscl = 2;
+        int iscl = 3;
         TList *list = (TList *)fSelColDir[iscl]->GetList();
 
     ((TH1D *) list->FindObject("nJet"))->Fill(event->nJet_, combined_tauwt);
@@ -6725,7 +6732,7 @@ bool SkimAna::FillLeptonControlHists(){
    bool SkimAna::FillLeptonVetoControlHists(){
 	double combined_tauwt = _sampleWeight*_prefireWeight*_PUWeight;
      	//double tau_wt = 1;
-        int iscl = 3;
+        int iscl = 4;
         TList *list = (TList *)fSelColDir[iscl]->GetList();
    
     ((TH1D *) list->FindObject("nJet"))->Fill(event->nJet_, combined_tauwt);
@@ -6752,7 +6759,7 @@ bool SkimAna::FillJetControlHists(){
  
 	double combined_tauwt = _sampleWeight*_prefireWeight*_PUWeight;
 	//double tau_wt = 1;
-        int iscl = 4;
+        int iscl = 5;
         TList *list = (TList *)fSelColDir[iscl]->GetList();
     ((TH1D *) list->FindObject("nJet"))->Fill(selector->Jets.size(), combined_tauwt);
     ((TH1D *) list->FindObject("nBJet"))->Fill(selector->bJets.size(), combined_tauwt);
@@ -6929,7 +6936,7 @@ bool SkimAna::FillMETControlHists(){
 bool SkimAna::FillBTagControlHists(){
  	double combined_tauwt = _sampleWeight*_prefireWeight*_PUWeight;	
 	//double tau_wt = 1;
-        int iscl = 5;
+        int iscl = 6;
         TList *list = (TList *)fSelColDir[iscl]->GetList();
     ((TH1D *) list->FindObject("nJet"))->Fill(selector->Jets.size(), combined_tauwt);
     ((TH1D *) list->FindObject("nBJet"))->Fill(selector->bJets.size(), combined_tauwt);

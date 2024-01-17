@@ -1,0 +1,21 @@
+requirements = (OpSysAndVer =?= "CentOS7")
+Executable =  run_LQAnalysis.sh 
+Universe   = vanilla
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+Transfer_Input_Files = LQAnalysis.tar.gz, run_LQAnalysis.sh
+x509userproxy = $ENV(X509_USER_PROXY)
+use_x509userproxy = true
++BenchmarkJob = True
+#+JobFlavour = "testmatch"
+#+MaxRuntime = 41220
++MaxRuntime = 7200
+notification = Never
+Output = log/log_$(cluster)_$(process).stdout
+Error  = log/log_$(cluster)_$(process).stderr
+Log    = log/log_$(cluster)_$(process).condor
+
+X=$(step)
+Arguments  = 2018 TTbarPowheg_Dilepton input/eos/2018/TTbarPowheg_Dilepton_2018.txt $INT(X) base 
+Queue 31
+

@@ -8,6 +8,16 @@ std::map<std::string, vector<double> > numberOfEvents;
 
 void initCrossSections(){
 
+	//crossSection is in pb
+  crossSections["LQsToTauTauTTbar_LQM1000"]  =  {0.00573, 0.00573, 0.00573}; //NLO
+  crossSections["LQsToTauTauTTbar_LQM1100"]  =  {0.00286, 0.00286, 0.00286}; //NLO
+  crossSections["LQsToTauTauTTbar_LQM1200"]  =  {0.00150, 0.00150, 0.00150}; //NLO
+  crossSections["LQsToTauTauTTbar_LQM1300"]  =  {0.00079, 0.00079, 0.00079}; //NLO 
+  crossSections["LQsToTauTauTTbar_LQM1400"]  =  {0.00044, 0.00044, 0.00044}; //NLO 
+  crossSections["LQsToTauTauTTbar_LQM1500"]  =  {0.00025, 0.00025, 0.00025}; //NLO 
+  crossSections["LQsToTauTauTTbar_LQM1600"]  =  {0.000146, 0.000146, 0.000146}; //NLO 
+
+	/* // crossSection is in fb
   crossSections["LQsToTauTauTTbar_LQM1000"]  =  {5.73, 5.73, 5.73}; //NLO
   crossSections["LQsToTauTauTTbar_LQM1100"]  =  {2.86, 2.86, 2.86}; //NLO
   crossSections["LQsToTauTauTTbar_LQM1200"]  =  {1.50, 1.50, 1.50}; //NLO
@@ -15,7 +25,7 @@ void initCrossSections(){
   crossSections["LQsToTauTauTTbar_LQM1400"]  =  {0.44, 0.44, 0.44}; //NLO 
   crossSections["LQsToTauTauTTbar_LQM1500"]  =  {0.25, 0.25, 0.25}; //NLO 
   crossSections["LQsToTauTauTTbar_LQM1600"]  =  {0.146, 0.146, 0.146}; //NLO 
-  
+  	*/
   /* crossSections["HminusM080"] = {19.13, 19.13, 19.13}; */
   /* crossSections["HminusM090"] = {19.13, 19.13, 19.13}; */
   /* crossSections["HminusM100"] = {19.13, 19.13, 19.13}; */

@@ -16,10 +16,10 @@ samples_2017 = ["TTbar", "singleTop", "Wjets", "DYjets", "VBFusion", "MCQCDMu", 
 #samples_2018 = ["TTbarPowheg_Dilepton","TTbarPowheg_Hadronic","TTbarPowheg_Semilept","TTbar", "singleTop", "Wjets", "DYjets", "VBFusion", "MCQCDMu", "MCQCDEle",
 #                "HplusM080", "HplusM090", "HplusM100", "HplusM110", "HplusM120", "HplusM130", "HplusM140", "HplusM150", "HplusM155", "HplusM160",
 #                "HminusM080", "HminusM090", "HminusM100", "HminusM110", "HminusM120", "HminusM130", "HminusM140", "HminusM150", "HminusM155", "HminusM160"]
-samples_2018 = ["TTbarPowheg_Dilepton"]
+#samples_2018 = ["TTbarPowheg_Dilepton"]
 
 #samples_2018 = ["TTbarPowheg_Hadronic","TTbarPowheg_Dilepton","TTbarPowheg_Semilept"]
-#samples_2018 = ["LQsToTauTauTTbar_LQM1000"]
+samples_2018 = ["LQsToTauTauTTbar_LQM1000"]
 #process="Hadronic"
 syst_2016 = ["base", "jecup", "jecdown", "jerup", "jerdown", "iso20", "metup", "metdown", "stotpuup", "stotpudown", "stotrelup", "stotreldown", "stotptup", "stotptdown", "stotscaleup", "stotscaledown", "flavorqcdup", "flavorqcddown", "timeptetaup", "timeptetadown"]
 syst_2017 = ["base", "jecup", "jecdown", "jerup", "jerdown", "iso20", "metup", "metdown", "stotpuup", "stotpudown", "stotrelup", "stotreldown", "stotptup", "stotptdown", "stotscaleup", "stotscaledown", "flavorqcdup", "flavorqcddown", "timeptetaup", "timeptetadown"]
@@ -48,7 +48,7 @@ tunedict = {
     "mtopdown" : "mtopdown_TTbar"
 }
 
-jdlDir = 'Background'
+jdlDir = 'Signal'
 if not os.path.exists("%s/log"%jdlDir):
     os.makedirs("%s/log"%jdlDir)
 condorLogDir = "log"
@@ -67,7 +67,7 @@ use_x509userproxy = true\n\
 +BenchmarkJob = True\n\
 #+JobFlavour = "testmatch"\n\
 #+MaxRuntime = 41220\n\
-+MaxRuntime = 7200\n\
++MaxRuntime = 900\n\
 notification = Never\n\
 Output = %s/log_$(cluster)_$(process).stdout\n\
 Error  = %s/log_$(cluster)_$(process).stderr\n\
