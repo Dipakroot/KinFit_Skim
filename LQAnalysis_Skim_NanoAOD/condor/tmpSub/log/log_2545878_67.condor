@@ -1,0 +1,17 @@
+000 (2545878.067.000) 06/25 09:21:30 Job submitted from host: <188.185.121.235:9618?addrs=188.185.121.235-9618+[2001-1458-d00-49--100-36e]-9618&alias=bigbird22.cern.ch&noUDP&sock=schedd_635262_78be>
+...
+040 (2545878.067.000) 06/25 09:22:33 Started transferring input files
+	Transferring to host: <128.142.192.174:9618?addrs=128.142.192.174-9618+[2001-1458-301-56--100-2a]-9618&alias=b7g18p1742.cern.ch&noUDP&sock=slot1_39_38418_b4d3_11229>
+...
+007 (2545878.067.000) 06/25 09:22:33 Shadow exception!
+	Error from slot1_39@b7g18p1742.cern.ch: SHADOW at 188.185.121.235 failed to send file(s) to <128.142.192.174:35029>: error reading from /tmp/x509up_u138542: (errno 2) No such file or directory; STARTER failed to receive file(s) from <188.185.121.235:9618>
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (2545878.067.000) 06/25 09:22:33 Job was held.
+	Error from slot1_39@b7g18p1742.cern.ch: SHADOW at 188.185.121.235 failed to send file(s) to <128.142.192.174:35029>: error reading from /tmp/x509up_u138542: (errno 2) No such file or directory; STARTER failed to receive file(s) from <188.185.121.235:9618>
+	Code 13 Subcode 2
+...
+009 (2545878.067.000) 06/26 09:26:20 Job was aborted.
+	The system macro SYSTEM_PERIODIC_REMOVE expression '(JobUniverse == 5 && JobStatus == 2 && (MaxRuntime =!= undefined) && (BenchmarkJob =!= true) && (TransferringInput =!= true) && ((time() - JobCurrentStartExecutingDate) > MaxRuntime)) || (JobUniverse == 5 && JobStatus == 1 && (time() - EnteredCurrentStatus > 86400 * 10)) || (JobStatus == 5 && time() - EnteredCurrentStatus > 3600 * 24) || (ResidentSetSize_RAW > 10000 * RequestMemory) || (NumJobStarts > 10) || (DiskUsage > (37500000 * RequestCpus)) || (HoldReasonCode =?= 33)' evaluated to TRUE
+...
