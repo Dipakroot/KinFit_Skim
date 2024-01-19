@@ -1,1 +1,0 @@
-scripts/impact_plot.sh

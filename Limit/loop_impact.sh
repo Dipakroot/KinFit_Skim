@@ -1,1 +1,0 @@
-scripts/loop_impact.sh
